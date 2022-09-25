@@ -1,6 +1,6 @@
 import sys
 
-class Game:
+class Game:#-------------------------------------------------------------------------------------------
     def __init__(self, titulo=None, produtora=None, genero=None, plataforma=None, ano=None, classificacao=None, preco=None, midia=None, tamanho=None):
         self.titulo = titulo
         self.produtora = produtora
@@ -18,7 +18,7 @@ class Game:
     def getNome(self):
         return (self.nome)
 
-
+#TAMANHOS FIXOS-------------------------------------------------------------------------------------------
 def escritaTamanhosFixos(entrada,saida, game):
     linha = entrada.readline()
     titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = linha.split("|")
@@ -83,14 +83,119 @@ def escritaTamanhosFixos(entrada,saida, game):
     #Tamanho
     espacosTamanho = 7 - len(game.tamanho)
     saida.write("%s" % game.tamanho)
-   
-   
-# MAIN -------------------------------------------------------------------------------------------------
-entrada = open('games.txt','r')
-saida = open('saida.txt','w')
+    
 
-for i in range (23):
-    g= Game()
-    escritaTamanhosFixos(entrada,saida,g)
-entrada.close()
-saida.close()
+#QTDECAMPOS--------------------------------------------------------------------------------------------
+def escritaQtdeCampos(entrada,saida, game, tamanho):
+    linha = entrada.readline()
+    titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = linha.split("|")
+    game = Game(titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho)
+
+    saida.write("%s|" % game.titulo)
+    saida.write("%s|" % game.produtora)
+    saida.write("%s|" % game.genero)
+    saida.write("%s|" % game.plataforma)
+    saida.write("%s|" % game.ano)
+    saida.write("%s|" % game.classificacao)
+    saida.write("%s|" % game.preco)
+    saida.write("%s|" % game.midia)
+    saida.write("%s" % game.tamanho)
+
+
+#QTDEBytesComeco--------------------------------------------------------------------------------------------
+def escritaQtdeBytesComeço(entrada,saida, game):
+    linha = entrada.readline()
+    titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = linha.split("|")
+    game = Game(titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho)
+
+    tamanho = len(linha)
+    saida.write("%d" % tamanho)
+    saida.write("%s" %game.titulo)
+    saida.write("|")
+    saida.write("%s" %game.produtora)
+    saida.write("|")
+    saida.write("%s" %game.genero)
+    saida.write("|")
+    saida.write("%s" %game.plataforma)
+    saida.write("|")
+    saida.write("%s" %game.ano)
+    saida.write("|")
+    saida.write("%s" %game.classificacao)
+    saida.write("|")
+    saida.write("%s" %game.preco)
+    saida.write("|")
+    saida.write("%s" %game.midia)
+    saida.write("|")
+    saida.write("%s" %game.tamanho)
+    
+   
+#QTDEBytesComeco--------------------------------------------------------------------------------------------
+def escritaDelimitador(entrada,saida, game):
+    linha = entrada.readline()
+    titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = linha.split("|")
+    game = Game(titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho)
+    tamanho = len(linha)
+    saida.write("%s" %game.titulo)
+    saida.write("|")
+    saida.write("%s" %game.produtora)
+    saida.write("|")
+    saida.write("%s" %game.genero)
+    saida.write("|")
+    saida.write("%s" %game.plataforma)
+    saida.write("|")
+    saida.write("%s" %game.ano)
+    saida.write("|")
+    saida.write("%s" %game.classificacao)
+    saida.write("|")
+    saida.write("%s" %game.preco)
+    saida.write("|")
+    saida.write("%s" %game.midia)
+    saida.write("|")
+    saida.write("%s#" %game.tamanho)
+        
+    
+
+# MAIN -------------------------------------------------------------------------------------------------
+opcao = input("Método?")
+
+#TAMANHOS FIXOS
+if opcao == "1":
+    entrada = open('games.txt','r')
+    saida = open('saida.txt','w')
+
+    for i in range (23):
+        g= Game()
+        escritaTamanhosFixos(entrada,saida,g)
+    entrada.close()
+    saida.close()
+
+#NUMERO CAMPOS
+if opcao == "2":
+    entrada = open('games.txt','r')
+    saida = open('saida.txt','w')
+    for i in range (23):
+        g= Game()
+        escritaQtdeCampos(entrada,saida,g,9)
+    entrada.close()
+    saida.close()
+
+#QtdeBytesComeco
+if opcao == "3":
+    entrada = open('games.txt','r')
+    saida = open('saida.txt','w')
+    for i in range (23):
+        g= Game()
+        escritaQtdeBytesComeço(entrada,saida,g)
+    entrada.close()
+    saida.close()
+
+#escritaDelimitador
+if opcao == "4":
+    entrada = open('games.txt','r')
+    saida = open('saida.txt','w')
+    for i in range (23):
+        g= Game()
+        escritaDelimitador(entrada,saida,g)
+    entrada.close()
+    saida.close()
+    
