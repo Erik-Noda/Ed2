@@ -1,0 +1,96 @@
+import sys
+
+class Game:
+    def __init__(self, titulo=None, produtora=None, genero=None, plataforma=None, ano=None, classificacao=None, preco=None, midia=None, tamanho=None):
+        self.titulo = titulo
+        self.produtora = produtora
+        self.genero = genero
+        self.plataforma = plataforma
+        self.ano = ano
+        self.classificacao = classificacao 
+        self.preco = preco
+        self.midia = midia 
+        self.tamanho = tamanho
+
+    def setNome(self,nome):
+        self.nome = nome
+
+    def getNome(self):
+        return (self.nome)
+
+
+def escritaTamanhosFixos(entrada,saida, game):
+    linha = entrada.readline()
+    titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = linha.split("|")
+    game = Game(titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho)
+
+    #Titulo
+    espacosTitulo = 50 - len(game.titulo)
+    saida.write("%s" % game.titulo)
+    for i in range (espacosTitulo):
+        saida.write(" ")
+    saida.write("|")
+
+    #Produtora
+    espacosProdutora = 40 - len(game.produtora)
+    saida.write("%s" % game.produtora)
+    for i in range (espacosProdutora):
+        saida.write(" ")
+    saida.write("|")
+    
+    #Genero
+    espacosGenero = 25 - len(game.genero)
+    saida.write("%s" % game.genero)
+    for i in range (espacosGenero):
+        saida.write(" ")
+    saida.write("|")
+
+    #Plataforma
+    espacosPlataforma = 15 - len(game.plataforma)
+    saida.write("%s" % game.plataforma)
+    for i in range (espacosPlataforma):
+        saida.write(" ")
+    saida.write("|")
+
+    #Ano
+    espacosAno = 4 - len(game.ano)
+    saida.write("%s" % game.ano)
+    for i in range (espacosAno):
+        saida.write(" ")
+    saida.write("|")
+
+    #Classificacao
+    espacosClassificacao = 12 - len(game.classificacao)
+    saida.write("%s" % game.classificacao)
+    for i in range (espacosClassificacao):
+        saida.write(" ")
+    saida.write("|")
+
+    #Preco
+    espacosPreco = 7 - len(game.preco)
+    saida.write("%s" % game.preco)
+    for i in range (espacosPreco):
+        saida.write(" ")
+    saida.write("|")
+
+    #Midia
+    espacosMidia = 8 - len(game.midia)
+    saida.write("%s" % game.midia)
+    for i in range (espacosMidia):
+        saida.write(" ")
+    saida.write("|")
+
+    #Tamanho
+    espacosTamanho = 7 - len(game.tamanho)
+    saida.write("%s" % game.tamanho)
+   
+   
+# MAIN -------------------------------------------------------------------------------------------------
+entrada = open('games.txt','r')
+saida = open('saida.txt','w')
+
+for i in range (23):
+    g= Game()
+    escritaTamanhosFixos(entrada,saida,g)
+entrada.close()
+saida.close()
