@@ -3,14 +3,18 @@ import re
 
 def grep(arquivo,string):
     i=0
+    
     saida2=""
+    indice= ""
+
     for line in arquivo:
         i+=1
-        if re.search(string,line):
+        if re.search(string.lower(),line.lower()):
             saida1 = str(i) + ": " + line
             saida2 = saida2 + saida1
-
-    return saida2
+            indice = indice + " " + str(i)
+    indice = "Indices: " + indice
+    return indice,saida2
             
                
 
@@ -18,7 +22,8 @@ def grep(arquivo,string):
 arquivo = open("entrada.txt", "r")
 string = input("String desejada: \n")
 
-saida = grep(arquivo,string)
+indice,saida = grep(arquivo,string)
+print(indice)
 print(saida)
 
 arquivo.close()
