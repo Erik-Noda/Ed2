@@ -1,0 +1,24 @@
+import sys
+import re
+
+def grep(arquivo,string):
+    i=0
+    saida2=""
+    for line in arquivo:
+        i+=1
+        if re.search(string,line):
+            saida1 = str(i) + ": " + line
+            saida2 = saida2 + saida1
+
+    return saida2
+            
+               
+
+#Main
+arquivo = open("entrada.txt", "r")
+string = input("String desejada: \n")
+
+saida = grep(arquivo,string)
+print(saida)
+
+arquivo.close()
