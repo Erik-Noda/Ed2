@@ -30,7 +30,7 @@ def deleteRegistro(arquivo,chave):
     for line in arquivo:
         Id = criaChave
         if Id == chave:
-            line
+            line = '*'+line[:1]
 
 #main
 arquivo = open("games.txt",'r')
