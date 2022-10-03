@@ -1,0 +1,37 @@
+import sys
+
+class Game:#-------------------------------------------------------------------------------------------
+    def __init__(self, titulo=None, produtora=None, genero=None, plataforma=None, ano=None, classificacao=None, preco=None, midia=None, tamanho=None):
+        self.titulo = titulo
+        self.produtora = produtora
+        self.genero = genero
+        self.plataforma = plataforma
+        self.ano = ano
+        self.classificacao = classificacao 
+        self.preco = preco
+        self.midia = midia 
+        self.tamanho = tamanho
+
+    def setNome(self,nome):
+        self.nome = nome
+
+    def getNome(self):
+        return (self.nome)
+
+#------------------------------------------------------------------------------------------------
+def criaChave(arquivo):
+    line = arquivo.readline()
+    titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho = line.split("|")
+    game = Game(titulo,produtora,genero,plataforma,ano, classificacao, preco, midia, tamanho)
+    tituloCompactado = game.titulo.replace(" ","")
+    chave = str((tituloCompactado + game.ano).upper())
+    
+def deleteRegistro(arquivo,chave):
+    for line in arquivo:
+        Id = criaChave
+        if Id == chave:
+            line
+
+#main
+arquivo = open("games.txt",'r')
+criaChave(arquivo)
